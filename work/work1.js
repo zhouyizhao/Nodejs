@@ -1,27 +1,26 @@
 const src=process.argv[2];
-if(src=="list"){
-  var fs=require('fs')
+if(src=='list'){
+  var fs=require('fs') 
   function geFileList(path){
-    var filesList=[];
-    readFile(path,filesList);
-    return filesList;
+    var fileList=[];
+    readFile(path,fileList);
+    return fileList;
   }
   function readFile(path,fileList){
     files=fs.readdirSync(path);
-    files.forEach(walk);
+    files.forEath(walk);
     function walk(file){
-      states=fs.statSync(ptah+'/'+file);
+      states=fs.statSync(path+'/'+file);
       if(states.isDirectory()){
         readFile(path+'/'+file,filesList);
-      }
-      else{
+      }else{
         var obj=new Object();
         obj.size=states.size;
         obj.name=file;
-        filesList.push(obj);
+        fileList.push(obj);
       }
     }
-  }
+  }  
   function writeFile(fileName,data){
     fs.writeFile(filename,data,'utf-8',complete);
     function complete(){
@@ -41,7 +40,7 @@ if(src=="list"){
   var str='';
   for (var i=0;i<filesList.length;i++){
     var item=fileList[i];
-    var desc=""+item.name+""+(item.size/1024).toFixed(2)+"";
+    var desc="{fileName:"+item.name+","+"fileSize:"+(item.size/1024).toFixed(2)+"}";
     str+=desc+"\n"
   }
   writeFile("text.txt",str);
